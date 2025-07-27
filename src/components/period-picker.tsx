@@ -1,5 +1,7 @@
 "use client";
 
+// COMMENTED OUT FOR FUTURE USE
+/*
 import { ChevronUpIcon } from "@/assets/icons";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -37,7 +39,6 @@ export function PeriodPicker<TItem extends string>({
         )}
       >
         <span className="capitalize">{defaultValue || "Time Period"}</span>
-
         <ChevronUpIcon className="size-4 rotate-180 transition-transform" />
       </DropdownTrigger>
 
@@ -54,7 +55,7 @@ export function PeriodPicker<TItem extends string>({
                   const queryString = createQueryString({
                     sectionKey,
                     value: item,
-                    selectedTimeFrame: searchParams.get(PARAM_KEY),
+                    selectedTimeFrame: searchParams?.get(PARAM_KEY),
                   });
 
                   router.push(pathname + queryString, {
@@ -96,3 +97,9 @@ const createQueryString = (props: {
 
   return `?${PARAM_KEY}=${newSearchParams},${paramsValue}`;
 };
+*/
+
+// ✅ Safe fallback export
+export function PeriodPicker() {
+  return null;
+}
