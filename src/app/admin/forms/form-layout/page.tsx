@@ -3,7 +3,6 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import type { Metadata } from "next";
 import { ContactForm } from "./_components/contact-form";
 import { SignInForm } from "./_components/sign-in-form";
-import { SignUpForm } from "../../../auth/sign-up/page";
 
 export const metadata: Metadata = {
   title: "Form Layout",
