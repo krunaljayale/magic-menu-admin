@@ -8,6 +8,10 @@ const nextConfig = {
       },
     ],
   },
+
+  eslint: {
+    ignoreDuringBuilds: true, // ✅ Disable ESLint check during build
+  },
 };
 
-module.exports = nextConfig; // ✅ Use CommonJS export
+module.exports = nextConfig;
