@@ -79,7 +79,7 @@ export default function SigninWithPassword() {
 
         // Optionally redirect
         setTimeout(() => {
-          router.push("/admin/(home)");
+          router.push("/admin");
         }, 100);
       } else {
         setMessage(`❌ ${result?.error || "Login failed."}`);
