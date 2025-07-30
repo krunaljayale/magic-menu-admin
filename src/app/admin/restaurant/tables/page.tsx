@@ -6,7 +6,6 @@ import RestaurantDetailCard from "@/components/Cards/RestaurantCards/RestaurantD
 import RestaurantOrdersCards from "@/components/Cards/RestaurantCards/RestaurantOrdersCards/page";
 import RestaurantPayoutCards from "@/components/Cards/RestaurantCards/RestaurantPayoutCards/page";
 import { RestaurantsTable } from "@/components/Tables/restaurantTables/restaurants-table";
-import { UnsettledOrders } from "@/components/Tables/riderTables/unsettledOrders";
 
 import { useState } from "react";
 

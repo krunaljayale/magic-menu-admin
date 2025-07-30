@@ -25,4 +25,6 @@ export const API = {
   GET_SEARCHED_ORDER: `${BASE_URL}/admin/get-searched-past-order`,
 
   GET_DASHBOARD_DATA: `${BASE_URL}/admin/get-dashboard-data`,
+
+  SEND_PUSH_NOTIFICATION: `${BASE_URL}/admin/send-push-notification`
 };

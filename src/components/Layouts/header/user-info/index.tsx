@@ -55,7 +55,7 @@ export function UserInfo() {
             height={200}
             style={{borderRadius:'50%'}}
           /> */}
-          <figcaption className="flex items-center gap-1 font-medium text-dark dark:text-dark-6 max-[1024px]:sr-only">
+          <figcaption className="flex items-center gap-1 font-medium text-dark dark:text-dark-6 ">
             <span>{name}</span>
 
             <ChevronUpIcon

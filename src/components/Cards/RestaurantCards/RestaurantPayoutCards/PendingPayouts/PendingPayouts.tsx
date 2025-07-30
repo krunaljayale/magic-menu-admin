@@ -131,7 +131,7 @@ function PendingPayouts({ id }: { id: string }) {
                 Payable Amount
               </p>
               <p className="text-2xl font-bold text-green-600">
-                ₹{Math.round(payout.netRevenue)}{" "}
+                ₹{Math.ceil(payout.netRevenue)}{" "}
                 <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
                   (actual: ₹{payout.netRevenue.toFixed(2)})
                 </span>

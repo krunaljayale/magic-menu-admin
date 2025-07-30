@@ -9,9 +9,9 @@ type LoginResponse = {
   token: string;
   userId: string;
   error?: string;
-  name:string;
-  number:number;
-  role:string;
+  name: string;
+  number: number;
+  role: string;
 };
 
 export default function SigninWithPassword() {
@@ -60,7 +60,7 @@ export default function SigninWithPassword() {
       const result: LoginResponse = await response.json();
 
       if (response.ok) {
-        const { token, userId, name, number,role } = result;
+        const { token, userId, name, number, role } = result;
 
         // Store JWT and userId for future use
         localStorage.setItem("jwt_token", token);
@@ -78,7 +78,9 @@ export default function SigninWithPassword() {
         setMessage("✅ Login successful.");
 
         // Optionally redirect
-        router.push("/admin");
+        setTimeout(() => {
+          router.push("/admin/(home)");
+        }, 100);
       } else {
         setMessage(`❌ ${result?.error || "Login failed."}`);
       }

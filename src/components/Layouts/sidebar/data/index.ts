@@ -37,6 +37,12 @@ export const NAV_DATA = [
         icon: Icons.Restaurant,
         items: [],
       },
+      {
+        title: "Push Notifications",
+        url: "/admin/push-notifications",
+        icon: Icons.FourCircle,
+        items: [],
+      },
       // {
       //   title: "Customers",
       //   icon: Icons.User,

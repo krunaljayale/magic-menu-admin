@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import Image from "next/image";
-import { API } from "@/constants/api";
-import { CameraIcon } from "./_components/icons";
+import { API } from "@/constants/api"
 
 type Profile = {
   name: string;
