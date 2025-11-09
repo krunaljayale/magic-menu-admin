@@ -12,6 +12,7 @@ interface OrderData {
   ticketNumber: number;
   orderOtp: number;
   status: string;
+  reason: string;
   restaurantStatus: string;
   customer: {
     name: string;
@@ -37,7 +38,7 @@ interface OrderData {
     reachedRestaurantAt?: string;
     selfieAtRestaurant?: string;
     pickupConfirmedAt?: string;
-    dropAt?:string;
+    dropAt?: string;
   } | null;
   payment: {
     transactionId: string;
@@ -99,6 +100,9 @@ function PastOrderCard({ id }: PastOrderProps) {
     fetchOrderData();
   }, [id]);
 
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
 
   if (loading)
     return (
@@ -140,10 +144,13 @@ function PastOrderCard({ id }: PastOrderProps) {
         />
         <InfoRow label="Order OTP" value={data.orderOtp ?? "N/A"} />
         <InfoRow label="Status" value={data.status ?? "N/A"} />
-        <InfoRow
+        {data.reason && (
+          <InfoRow label="Reject-Reason" value={data.reason ?? "N/A"} />
+        )}
+        {/* <InfoRow
           label="Restaurant Status"
           value={data.restaurantStatus ?? "N/A"}
-        />
+        /> */}
         <InfoRow label="Hotel" value={data.hotel?.hotel ?? "N/A"} />
         <InfoRow label="Hotel Number" value={data.hotel?.number ?? "N/A"} />
         <InfoRow label="Customer Name" value={data.customer?.name ?? "N/A"} />
@@ -167,11 +174,22 @@ function PastOrderCard({ id }: PastOrderProps) {
           value={data.rider ? data.rider.number : "N/A"}
         />
         <InfoRow
-          label="Payment"
-          value={`${data.payment?.mode || "N/A"} (${data.payment?.status || "N/A"})`}
+          label="Payment Mode"
+          value={data.payment?.mode ? data.payment?.mode : "N/A"}
         />
         <InfoRow
-          label="Amount"
+          label="Payment Status"
+          className={data.payment?.status === "SUCCESS" ? "text-green-500" : ""}
+          value={data.payment?.status ? data.payment?.status : "N/A"}
+        />
+        <InfoRow
+          label="Transaction ID"
+          value={
+            data.payment?.transactionId ? data.payment?.transactionId : "N/A"
+          }
+        />
+        <InfoRow
+          label="Bill Amount"
           value={`₹${data.payment?.amount || data.totalPriceFromDB || "N/A"}`}
         />
       </div>
@@ -216,6 +234,7 @@ function PastOrderCard({ id }: PastOrderProps) {
                 : "N/A"
             }
           />
+
           <InfoRow
             label="Preparation Time (mins)"
             value={
@@ -300,9 +319,15 @@ function PastOrderCard({ id }: PastOrderProps) {
             label="Reached Drop At"
             value={
               data.riderMetaData?.dropAt
-                ? new Date(
-                    data.riderMetaData.dropAt,
-                  ).toLocaleString()
+                ? new Date(data.riderMetaData.dropAt).toLocaleString()
+                : "N/A"
+            }
+          />
+          <InfoRow
+            label="Delivered At"
+            value={
+              data.timeline?.deliveredAt
+                ? new Date(data.timeline.deliveredAt).toLocaleString()
                 : "N/A"
             }
           />
