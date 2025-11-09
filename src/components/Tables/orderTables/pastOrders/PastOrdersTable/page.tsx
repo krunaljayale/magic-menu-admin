@@ -1,6 +1,7 @@
 "use client";
 
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import { PreviewIcon } from "@/components/Tables/icons";
 import {
   Table,
   TableBody,
@@ -12,7 +13,13 @@ import {
 import { API } from "@/constants/api";
 import { useEffect, useState } from "react";
 
-const PastOrdersTable = () => {
+const PastOrdersTable = ({
+  actionable,
+  viewProfile,
+}: {
+  actionable: boolean;
+  viewProfile?: (id: string) => void;
+}) => {
   const [orders, setOrders] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -66,6 +73,12 @@ const PastOrdersTable = () => {
     fetchPastOrders();
   }, []);
 
+  const handleView = (id: string) => {
+    if (viewProfile) {
+      viewProfile(id);
+    }
+  };
+
   if (orders.length === 0) {
     return null;
   }
@@ -86,19 +99,19 @@ const PastOrdersTable = () => {
             <TableHead>Hotel Name</TableHead>
             <TableHead>Ordered On</TableHead>
             <TableHead>Order Value (₹)</TableHead>
-            <TableHead>Order Rider</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
 
         <TableBody>
           {orders.map((order) => (
             <TableRow
-              key={order.orderId}
+              key={order.orderTicketNumber}
               className="text-base font-medium text-dark dark:text-white"
             >
               <TableCell className="pl-5 sm:pl-6 xl:pl-7.5">
-                #{order.orderId}
+                #{order.orderTicketNumber}
               </TableCell>
               <TableCell>{order.hotelName}</TableCell>
               <TableCell>
@@ -108,7 +121,6 @@ const PastOrdersTable = () => {
                 })}
               </TableCell>
               <TableCell>₹{order.orderValue}</TableCell>
-              <TableCell>{order.riderName}</TableCell>
               <TableCell
                 className={
                   order.status === "DELIVERED"
@@ -119,6 +131,13 @@ const PastOrdersTable = () => {
                 }
               >
                 {order.status}
+              </TableCell>
+              <TableCell
+                className="flex cursor-pointer items-center justify-center gap-x-2 text-blue-light dark:text-blue-light-2"
+                onClick={() => handleView(order.orderId)}
+              >
+                View
+                <PreviewIcon />
               </TableCell>
             </TableRow>
           ))}

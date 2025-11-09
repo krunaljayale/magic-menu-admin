@@ -1,21 +1,13 @@
+
 import { Metadata } from "next";
-import PastOrdersTable from "@/components/Tables/orderTables/pastOrders/PastOrdersTable/page";
-import React from "react";
-import SearchOrdersTable from "@/components/Tables/orderTables/pastOrders/SearchOrdersTable/page";
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import PastOrdersTablesPage from "./tables/page";
 
 export const metadata: Metadata = {
-  title: "Past Orders",
+  title: "PastOrders Page",
 };
 
 function PastOrders() {
-  return (
-    <>
-    <Breadcrumb pageName="Past Orders" />
-      <SearchOrdersTable />
-      <PastOrdersTable />
-    </>
-  );
+  return <PastOrdersTablesPage/>;
 }
 
 export default PastOrders;

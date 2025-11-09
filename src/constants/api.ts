@@ -21,9 +21,10 @@ export const API = {
   PAY_PENDING_PAYOUT: `${BASE_URL}/admin/pay-pending-payout`,
 
   GET_LIVE_ORDERS: `${BASE_URL}/admin/get-live-orders`,
+  GET_LIVE_ORDER_DATA: `${BASE_URL}/admin/get-live-order-data`,
   GET_PAST_ORDERS: `${BASE_URL}/admin/get-past-orders`,
+  GET_PAST_ORDER_DATA: `${BASE_URL}/admin/get-past-order-data`,
   GET_SEARCHED_ORDER: `${BASE_URL}/admin/get-searched-past-order`,
-
   GET_DASHBOARD_DATA: `${BASE_URL}/admin/get-dashboard-data`,
 
   SEND_PUSH_NOTIFICATION: `${BASE_URL}/admin/send-push-notification`
