@@ -100,6 +100,7 @@ const PastOrdersTable = ({
             <TableHead>Ordered On</TableHead>
             <TableHead>Order Value (₹)</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead>Payment</TableHead>
             <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -131,6 +132,18 @@ const PastOrdersTable = ({
                 }
               >
                 {order.status}
+              </TableCell>
+              <TableCell
+                className={
+                  order.paymentStatus === "SUCCESS"
+                    ? "text-green-light-1 dark:text-green-light-2"
+                    : order.paymentStatus === "NOT_COLLECTED"
+                      ? "text-red-light"
+                      : ""
+                }
+              >
+                {order.paymentStatus}
+                <h6 className="text-dark dark:text-white text-body-sm">({order.paymentMode})</h6>
               </TableCell>
               <TableCell
                 className="flex cursor-pointer items-center justify-center gap-x-2 text-blue-light dark:text-blue-light-2"
