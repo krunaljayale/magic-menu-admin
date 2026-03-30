@@ -27,5 +27,11 @@ export const API = {
   GET_SEARCHED_ORDER: `${BASE_URL}/admin/get-searched-past-order`,
   GET_DASHBOARD_DATA: `${BASE_URL}/admin/get-dashboard-data`,
 
-  SEND_PUSH_NOTIFICATION: `${BASE_URL}/admin/send-push-notification`
+  SEND_PUSH_NOTIFICATION: `${BASE_URL}/admin/send-push-notification`,
+
+  CREATE_COUPON:`${BASE_URL}/admin/create-coupon`,
+  GET_ALL_RESTAURANTS:`${BASE_URL}/admin/get-active-restaurants`,
+  GET_ALL_COUPONS:`${BASE_URL}/admin/get-all-coupons`,
+  GET_COUPON:`${BASE_URL}/admin/get-coupon-data`,
+  EDIT_COUPON:`${BASE_URL}/admin/toggle-coupon`
 };

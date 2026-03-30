@@ -8,18 +8,20 @@ type SwitchProps = {
 const SwitcherThree: FC<SwitchProps> = ({ enabled, onChange }) => {
   return (
     <div>
-      <label
-        htmlFor="toggle3"
-        className="flex cursor-pointer select-none items-center"
-      >
+      {/* 1. COMPLETELY REMOVED htmlFor */}
+      <label className="flex cursor-pointer select-none items-center">
         <div className="relative">
+          {/* 2. COMPLETELY REMOVED id */}
+          {/* 3. UPDATED onChange to safely use e.target.checked */}
           <input
             type="checkbox"
-            id="toggle3"
             className="sr-only"
-            onChange={() => onChange(!enabled)}
+            checked={enabled}
+            onChange={(e) => onChange(e.target.checked)}
           />
+          
           <div className="block h-8 w-14 rounded-full bg-gray-3 dark:bg-[#5A616B]"></div>
+          
           <div
             className={`dot absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-switch-1 transition ${
               enabled && "!right-1 !translate-x-full !bg-primary dark:!bg-white"

@@ -7,10 +7,17 @@ function SendPushNotification() {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  // 1. Add a dedicated loading state
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // 2. Safety check: prevent execution if already loading
+    if (isLoading) return;
+
     setStatus("Sending...");
+    setIsLoading(true);
 
     try {
       const token = localStorage.getItem("jwt_token");
@@ -33,6 +40,9 @@ function SendPushNotification() {
       }
     } catch (err) {
       setStatus("❌ Network error");
+    } finally {
+      // 3. Reset loading state in a finally block so it runs on both success and error
+      setIsLoading(false);
     }
   };
 
@@ -55,10 +65,11 @@ function SendPushNotification() {
           </label>
           <input
             type="text"
-            className="w-full rounded border border-gray-300 bg-white px-4 py-2 text-base shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            className="w-full rounded border border-gray-300 bg-white px-4 py-2 text-base shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             placeholder="Enter title..."
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            disabled={isLoading}
             required
           />
         </div>
@@ -69,21 +80,23 @@ function SendPushNotification() {
           </label>
           <textarea
             rows={4}
-            className="w-full resize-none rounded border border-gray-300 bg-white px-4 py-2 text-base shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            className="w-full resize-none rounded border border-gray-300 bg-white px-4 py-2 text-base shadow-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-50 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             placeholder="Enter message..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            disabled={isLoading}
             required
           />
         </div>
 
         <div className="col-span-2 flex justify-end">
+          {/* 4. Update the button to disable on load and change text */}
           <button
             type="submit"
-            className="hover:bg-primary-dark rounded bg-primary px-6 py-2 text-white shadow-md transition disabled:opacity-50"
-            disabled={!title || !message}
+            className="hover:bg-primary-dark rounded bg-primary px-6 py-2 text-white shadow-md transition disabled:cursor-not-allowed disabled:opacity-50"
+            disabled={!title || !message || isLoading}
           >
-            Send Notification
+            {isLoading ? "Sending..." : "Send Notification"}
           </button>
         </div>
       </form>

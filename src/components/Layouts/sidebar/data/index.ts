@@ -1,3 +1,4 @@
+import { title } from "process";
 import * as Icons from "../icons";
 
 export const NAV_DATA = [
@@ -6,7 +7,7 @@ export const NAV_DATA = [
     items: [
       {
         title: "Dashboard",
-        icon: Icons.HomeIcon,
+        icon: Icons.FourCircle,
         url: "/admin",
         items: [],
       },
@@ -24,31 +25,40 @@ export const NAV_DATA = [
           },
         ],
       },
-      
+
       {
         title: "Riders",
         icon: Icons.Rider,
-        url:'/admin/rider',
+        url: "/admin/rider",
         items: [],
       },
       {
         title: "Restaurants",
         url: "/admin/restaurant",
-        icon: Icons.Restaurant,
+        icon: Icons.HomeIcon,
         items: [],
       },
       {
         title: "Push Notifications",
         url: "/admin/push-notifications",
-        icon: Icons.FourCircle,
+        icon: Icons.Notification,
         items: [],
       },
-      // {
-      //   title: "Customers",
-      //   icon: Icons.User,
-      //   url: "/admin/customer",
-      //   items: [],
-      // },
+      {
+        title: "Coupons",
+        icon: Icons.Coupon,
+        url: "/admin/coupon",
+        items: [
+          {
+            title: "Create Coupon",
+            url: "/admin/coupon/new_coupon",
+          },
+          {
+            title: "Manage Coupons",
+            url: "/admin/coupon/old_coupon",
+          }
+        ],
+      },
       // {
       //   title: "Profile",
       //   url: "/admin/profile",
